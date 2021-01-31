@@ -22,4 +22,14 @@ class UrlShortener < Sinatra::Application
     shortcut.add_to_session(session, uri('/'))
     redirect '/shortcuts/new'
   end
+
+  get "/:token" do
+    token = params[:token]
+    begin
+      shortcut = Shortcut.find_by(token: token)
+    rescue
+      return "Sorry, this is not a saved short_url"
+    end
+    redirect shortcut.long_url_with_protocol
+  end
 end

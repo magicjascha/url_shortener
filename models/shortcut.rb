@@ -29,4 +29,12 @@ class Shortcut
   def short_url(root_url)
     "#{root_url}#{self.token}"
   end
+
+  def long_url_with_protocol
+    if self.long_url[0..7]=='https://' or self.long_url[0..6]=='http://'
+      return self.long_url
+    else
+      return 'https://'+ self.long_url
+    end
+  end
 end
