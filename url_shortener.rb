@@ -18,10 +18,9 @@ class UrlShortener < Sinatra::Application
 
   post '/shortcuts' do
     long_url = params["long_url"]
-    token = long_url[-8..-1]
-    Shortcut.create(token: token, long_url: long_url)
+    shortcut = Shortcut.create_unique_token(long_url)
     session[:shortcuts] = {} unless session[:shortcuts]
-    session[:shortcuts][token] = long_url
+    session[:shortcuts][shortcut.token] = shortcut.long_url
     redirect '/shortcuts/new'
   end
 end
