@@ -7,6 +7,7 @@ class Shortcut
   validates :token, presence: true
   validates :token, uniqueness: true
   validates :long_url, presence: true
+  validate :long_url_is_an_url
 
   index({ token: 1 }, { unique: true, name: "token_index" })
 
@@ -37,4 +38,18 @@ class Shortcut
       return 'https://'+ self.long_url
     end
   end
+
+  private
+
+    def long_url_is_an_url
+      errors.add(:long_url, "This is not a valid url") unless is_valid_url?(self.long_url_with_protocol)
+    end
+
+    def is_valid_url?(url)
+      if (url =~ /\A#{URI::regexp}\z/) == 0
+        return true
+      else
+        return false
+      end
+    end
 end

@@ -1,7 +1,10 @@
 <form action="/shortcuts" method="post">
-  <input type="text" name="long_url">
+  <input type="text" name="long_url" value=<%=@shortcut&.long_url%>>
   <input type="submit" value="submit" >
 </form>
+<% if @shortcut %>
+  <%= @shortcut.errors[:long_url].first %>
+<% end %>
 
 <% if @shortcuts %>
   <h2>Recently added by you<h2>
