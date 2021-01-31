@@ -20,4 +20,13 @@ class Shortcut
       raise StandardError, 'fails creating a unique token'
     end
   end
+
+  def add_to_session(session,root_url)
+    session[:shortcuts] = {} unless session[:shortcuts]
+    session[:shortcuts][self.short_url(root_url)] = self.long_url
+  end
+
+  def short_url(root_url)
+    "#{root_url}#{self.token}"
+  end
 end
