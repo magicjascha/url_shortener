@@ -40,4 +40,8 @@ class UrlShortener < Sinatra::Application
     end
     redirect shortcut.long_url_with_protocol
   end
+
+  error do
+    erb(:error)
+  end
 end
