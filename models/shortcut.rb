@@ -18,8 +18,8 @@ class Shortcut
       if shortcut.errors[:token].empty?
         return shortcut
       end
-      raise StandardError, 'fails creating a unique token'
     end
+    raise ApplicationError::NoUniqueTokenError, 'fails creating a unique token. You might need to enhance the number of characters'
   end
 
   def add_to_session(session,root_url)

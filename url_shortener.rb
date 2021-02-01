@@ -2,7 +2,8 @@
 require 'sinatra'
 require 'mongoid'
 require 'byebug'
-require './models/shortcut.rb'
+require './models/shortcut'
+require './lib/application_error'
 Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
 
 class UrlShortener < Sinatra::Application
