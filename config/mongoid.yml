@@ -14,3 +14,11 @@ test:
         - localhost:27017
       options:
         server_selection_timeout: 1
+docker:
+  clients:
+    default:
+      database: url_shortener_test_db
+      hosts:
+        - mongodb:27017
+      options:
+        server_selection_timeout: 5

@@ -1,0 +1,26 @@
+---
+version: '3'
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "21017:21017"
+    networks:
+      - app
+
+  app:
+    build: .
+    ports:
+      - "80:9292"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    environment:
+      - MONGODB_NAME=url_shortener_dev_db
+    networks:
+      - app
+
+networks:
+  app:
