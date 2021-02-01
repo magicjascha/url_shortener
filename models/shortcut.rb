@@ -1,5 +1,6 @@
 class Shortcut
   include Mongoid::Document
+  TOKEN_LENGTH = ENV['US_TOKEN_LENGTH'].to_i || 8
 
   field :token, type: String
   field :long_url, type: String
@@ -13,7 +14,7 @@ class Shortcut
 
   def self.create_unique_token(long_url)
     5.times do
-      token = rand(36**8).to_s(36)
+      token = rand(36**TOKEN_LENGTH).to_s(36)
       shortcut = self.create(token: token, long_url: long_url)
       if shortcut.errors[:token].empty?
         return shortcut
