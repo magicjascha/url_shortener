@@ -1,6 +1,7 @@
 class Shortcut
   include Mongoid::Document
-  TOKEN_LENGTH = ENV['US_TOKEN_LENGTH'].to_i || 8
+  #default token length is 8
+  TOKEN_LENGTH = (ENV['US_TOKEN_LENGTH'] || 8).to_i
 
   field :token, type: String
   field :long_url, type: String
