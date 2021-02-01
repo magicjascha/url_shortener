@@ -1,6 +1,8 @@
-require 'byebug'
+ENV['APP_ENV'] = 'test'
+
 require 'capybara/minitest'
 require 'minitest/autorun'
+require 'byebug'
 require './url_shortener'
 
 class IntegrationTest < Minitest::Test
@@ -8,6 +10,7 @@ class IntegrationTest < Minitest::Test
   Capybara.app = UrlShortener
 
   def teardown
+    Mongoid.purge!
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end

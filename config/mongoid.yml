@@ -6,3 +6,11 @@ development:
         - localhost:27017
       options:
         server_selection_timeout: 1
+test: 
+  clients:
+    default:
+      database: url_shortener_test_db
+      hosts:
+        - localhost:27017
+      options:
+        server_selection_timeout: 1
