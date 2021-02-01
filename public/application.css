@@ -1,0 +1,8 @@
+.flash-error {
+    background-color: lightpink;
+}
+
+.error-message {
+    color: red;
+    font-size: small;
+}

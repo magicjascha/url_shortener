@@ -1,5 +1,13 @@
 <html>
+  <head>
+    <link rel='stylesheet' type='text/css' href=<%=url('/application.css')%>>
+  </head>
   <body>
+    <% if flash[:error] %>
+        <div class="flash-error">
+          <%= flash[:error] %>
+        </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

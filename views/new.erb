@@ -3,7 +3,9 @@
   <input type="submit" value="Submit" >
 </form>
 <% if @shortcut %>
-  <%= @shortcut.errors[:long_url].first %>
+  <div class='error-message'>
+    <%= @shortcut.errors[:long_url].first %>
+  </div>
 <% end %>
 
 <% if @shortcuts %>

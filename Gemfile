@@ -6,6 +6,8 @@ gem 'mongoid'
 
 gem 'byebug'
 
+gem 'sinatra-flash'
+
 group :test do
   gem 'capybara'
   gem 'minitest-capybara'
