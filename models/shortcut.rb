@@ -70,7 +70,7 @@ class Shortcut
   #
   # @return [Boolean]
     def is_valid_url?(url)
-      if (url =~ /\A#{URI::regexp}\z/) == 0
+      if (url =~ /\A#{URI::DEFAULT_PARSER.make_regexp}\z/) == 0
         return true
       else
         return false
