@@ -64,7 +64,7 @@ class IntegrationTest < Minitest::Test
     assert page.has_current_path?('/shortcuts/new')
     # look for the flash error message
     assert page.has_selector?('.flash-error')
-    assert page.has_content?("Sorry, you requested a short url 'never-saved-this' that is not a saved. Do you want to generate a short url?")
+    assert page.has_content?("Sorry, you requested a short url 'never-saved-this' that is not saved. Do you want to generate a short url?")
     # check there is no headline for added urls and no table entries
     assert page.has_no_content?('Recently added by you')
     assert page.has_no_selector?('td')

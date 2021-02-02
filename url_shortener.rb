@@ -29,7 +29,7 @@ class UrlShortener < Sinatra::Application
       @shortcuts = session[:shortcuts]
       @shortcut = shortcut
       flash.now[:error] = "Sorry, something is wrong with your input. Please try again"
-      erb :new, layout: true
+      erb :new
     end
   end
 
@@ -39,7 +39,7 @@ class UrlShortener < Sinatra::Application
       shortcut = Shortcut.find_by(token: token)
     rescue
       logger.info('request for unknown token')
-      flash.next[:error] = "Sorry, you requested a short url '#{token}' that is not a saved. Do you want to generate a short url?"
+      flash.next[:error] = "Sorry, you requested a short url '#{token}' that is not saved. Do you want to generate a short url?"
       redirect '/shortcuts/new'
     end
     redirect shortcut.long_url_with_protocol
