@@ -52,4 +52,25 @@ class ControllerTest < Minitest::Test
     assert_equal(302, response.status)
     assert_equal(shortcut.long_url, response.header["location"])
   end
+
+  # invalid user input
+
+  def test_entering_invalid_url_does_not_save_to_database
+    original_nr_database_records = Shortcut.all.count
+    post('/shortcuts', { "long_url": 'invalid string with spaces'})
+    assert_equal(original_nr_database_records, Shortcut.all.count)
+  end
+
+  def test_entering_invalid_url_does_not_redirect
+    response = post('/shortcuts', { "long_url": 'invalid string with spaces'})
+    # no redirect
+    assert_equal(200, response.status)
+  end
+
+  def test_get_non_existent_short_url_redirects_to_new
+    response = get("/non-existent-token")
+    # redirect to new-path
+    assert_equal(302, response.status)
+    assert(response.header["location"].end_with?("/shortcuts/new"))
+  end
 end
