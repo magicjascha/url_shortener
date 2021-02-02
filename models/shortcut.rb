@@ -15,7 +15,7 @@ class Shortcut
 
   # creates a Shortcut record with the long_url from the input and a unique token consisting of random alphanumeric characters. The length of token is determined by the class constant TOKEN_LENGTH
   #
-  # @param long_url String
+  # @param long_url [String]
   # @return [Shortcut]
   # @raise [ApplicationError::NoUniqueTokenError] if the database is already too full to find a unique token, an error is thrown.
   def self.create_unique_token(long_url)
@@ -32,7 +32,7 @@ class Shortcut
   # adds the shortcuts' long_url and short_url into the session as a new key-value pair
   #
   # @param session [Session] with session[:shortcuts] = {shorturl3 => long_url3, shorturl2 => longurl2, ....urls present from before...}
-  # @param root_url [String]
+  # @param root_url [String] this has to be the apps domain
   # @return [Session]
   def add_to_session(session,root_url)
     session[:shortcuts] = {} unless session[:shortcuts]
@@ -40,9 +40,9 @@ class Shortcut
     return session
   end
 
-  # constructs the short_url from the root_url and the shortcuts' token
+  # constructs the short_url from the input, which should be the apps domain and the shortcuts' token
   #
-  # @param root_url [String]
+  # @param root_url [String] this has to be the apps domain
   # @return [String]
   def short_url(root_url)
     "#{root_url}#{self.token}"
